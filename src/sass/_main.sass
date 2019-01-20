@@ -1,0 +1,144 @@
+.chat__wrapper 
+	max-width: 1200px 
+	margin: 0 auto 
+	height: 600px 
+ 	position: relative 
+	padding-top: 20px  
+	background-color: #E0E0E0 
+	position: relative
+	
+.chat__left 
+	width: 370px 
+	background-color: #fff 
+	position: absolute 
+	left: 0 
+	top: 20px
+	height: 100% 
+
+.user 
+	display: flex 
+	align-items: center 
+	justify-content: flex-start 
+ 
+	cursor: pointer 
+ 
+	padding-right:  
+	&.active 
+		background-color: #4FC3F7 
+		color: #fff
+	&:hover, &:focus 
+		background-color: #4FC3F7
+	&__avatar 
+		max-width: 80px  
+		margin-right: 20px 
+		padding: 10px
+		border-radius: 50%
+		img 
+			max-width: 100%  
+			max-height: 100% 
+			display: block 
+	&__name 
+
+		font-size: 20px
+
+
+.chat__right  
+	margin-left: 370px
+	flex: 1 0 auto 
+	background-color: #fff  
+	max-height: 600px 
+	height: 100% 
+	overflow: hidden
+
+	display: flex 
+	flex-direction: column 
+	justify-content: space-between  
+
+
+.message__window 
+	flex: 1 0 auto 
+	background: url(../img/bg.jpg) no-repeat 
+	background-size: cover
+	display: flex 
+	align-items: flex-end 
+	
+	position: relative
+	max-height: 530px 
+	overflow-y: hidden
+
+
+.message__container 
+	max-height: 100% 
+	display: flex 
+	flex-direction: column 
+	position: absolute
+	&.hide 
+		opacity: 0
+	&.show 
+		opacity: 1
+
+.message__field 
+	width: 90% 
+	height: 50px  
+	padding: 4px 20px  
+	font-size: 16px 
+	border-radius: 7px
+	+placeholder 
+		color: gray
+		font-size: 18px 
+.send__btn 
+	width: 5% 
+	height: 50px 
+	text-align: center 
+	line-height: 50px 
+	color: #000
+	font-size: 38px  
+	background: transparent
+
+
+.message 
+	margin: 10px 
+	width: auto
+
+	display: flex 
+	align-items: center 
+	box-sizing: border-box
+	&--bot  
+		justify-content: flex-end
+		.message__avatar 
+			order: 2  
+			margin-right: 0 
+			margin-left: 20px
+
+		.message__text 
+			order: 1 
+			background-color: #FFF9C4 
+			&:after 
+				+arr(20, 20, #FFF9C4, r) 
+				left: auto 
+				right: -10px
+	&__container 
+		display: flex 
+		flex-direction: column
+		justify-content: flex-end  
+		flex: 1 0 auto 
+		width: 100%
+	&__avatar 
+		@extend .user__avatar 
+	&__text 
+		background-color: #FFF9C4 
+		color: #000 
+		flex: 1 0 auto 
+		font-size: 15px 
+		padding: 10px 
+		border-radius: 10px 
+		max-width: 370px 
+		position: relative  
+		min-height: 40px
+		&:after 
+			content: '' 
+			position: absolute 
+			top: 50% 
+			left: -10px 
+			transform: translateY(-50%) 
+			+arr(20, 20, #FFF9C4, l)
