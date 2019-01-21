@@ -9,9 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
     chatTab = document.querySelector('.chat__left'),
     chatMessages = [];
 
+
+	function getMessage() {
+    return JSON.parse(localStorage.getItem('message'));
+	}
   // hide user`s message windows
 
-  let currentUser = 0;
+	let currentUser = 0; 
+	console.log(JSON.parse(localStorage.getItem('currentUser')))
 
   for (let i = 0; i < user.length; i++) {
     user[currentUser].classList.add('active')
@@ -52,8 +57,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (self === element) {
             hideTabContent(0);
-            showTabContent(i);
-            break;
+						showTabContent(i); 
+						currentUser = i; 
+						localStorage.setItem('currentUser', JSON.stringify(currentUser));		
+            if (getMessage() != null) {
+              messageContainer[i].innerHTML = getMessage()[i];
+              break;
+            } else {
+              break;
+            }
+
           }
         }
       }
@@ -97,18 +110,28 @@ document.addEventListener('DOMContentLoaded', function () {
     userMessage.value = '';
 
 
-	}; 
-	
-	let bufferMessagesArray = [];
+  };
 
-  messageContainer.forEach(function (elem, index) {
+  let bufferMessagesArray = [];
 
+
+
+
+
+
+
+
+  if (!window.localStorage.length) {
+    messageContainer.forEach(function (elem, index) {
       chatMessages.push(bufferMessagesArray);
-
       localStorage.setItem('message', JSON.stringify(chatMessages));
-  
+    });
+  }
 
-  })
+
+
+
+
 
   function botMessage() {
     let botNewMessage = document.createElement('div');
@@ -122,16 +145,25 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!element.classList.contains('hide')) {
         element.appendChild(botNewMessage);
       }
-		}
-		
+    }
+
     messageContainer.forEach(function (elem, index) {
+
+      let history = JSON.parse(localStorage.getItem('message'));
+
       if (!elem.classList.contains('hide')) {
-				let history = JSON.parse(localStorage.getItem('message')); 
-					history[index] = elem.innerHTML.trim(); 
-					console.log(history)
-					localStorage.setItem('message', JSON.stringify(history));
+        history[index] = elem.innerHTML.trim();
+        localStorage.setItem('message', JSON.stringify(history));
       }
-    })
+    });
+
+
+
+
+
+
+
+
 
 
     // chatMessage.localStorage.setItem(chatMessage, newMessage.innerHTML);
@@ -141,5 +173,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function getRandomPhrase() {
     return Math.round(0 + Math.random() * (messagesArray.length - 1));
   };
+
+
+
 
 });
