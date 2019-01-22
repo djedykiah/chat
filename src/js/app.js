@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
   // hide user`s message windows
 
-	let currentUser = 0; 
+	let currentUser = 0;
 	console.log(JSON.parse(localStorage.getItem('currentUser')))
 
   for (let i = 0; i < user.length; i++) {
@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (self === element) {
             hideTabContent(0);
-						showTabContent(i); 
-						currentUser = i; 
-						localStorage.setItem('currentUser', JSON.stringify(currentUser));		
+						showTabContent(i);
+						currentUser = i;
+						localStorage.setItem('currentUser', JSON.stringify(currentUser));
             if (getMessage() != null) {
               messageContainer[i].innerHTML = getMessage()[i];
               break;
@@ -76,24 +76,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function sendMessage() {
     let message = userMessage.value,
-      newMessage = document.createElement('div'),
-      avatarUrl = "";
+        newMessage = document.createElement('div'),
+        avatarUrl = "";
 
     for (let i = 0; i < avatar.length; i++) {
       const element = avatar[i];
       if (element.parentElement.classList.contains('active')) {
         avatarUrl = element.getAttribute('src');
-
       }
     }
-
-
 
     newMessage.classList.add('message');
     newMessage.innerHTML = ('<img class="message__avatar" src="' + avatarUrl + '" alt=""><div class="message__text">' + message + '</div>')
     newMessage.classList.add('message--user');
-
-
 
     for (let i = 0; i < messageBlock.length; i++) {
       const element = messageBlock[i];
@@ -103,8 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     setTimeout(() => {
       botMessage();
-
-
     }, 1500);
 
     userMessage.value = '';
@@ -114,23 +107,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let bufferMessagesArray = [];
 
-
-
-
-
-
-
-
   if (!window.localStorage.length) {
     messageContainer.forEach(function (elem, index) {
       chatMessages.push(bufferMessagesArray);
       localStorage.setItem('message', JSON.stringify(chatMessages));
     });
   }
-
-
-
-
 
 
   function botMessage() {
@@ -157,22 +139,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-
-
-
-
-
-
-
-
-
-    // chatMessage.localStorage.setItem(chatMessage, newMessage.innerHTML);
   }
   sendBtn.addEventListener('click', sendMessage);
 
   function getRandomPhrase() {
     return Math.round(0 + Math.random() * (messagesArray.length - 1));
   };
+
+  user[JSON.parse(localStorage.getItem('currentUser'))].click();
 
 
 
